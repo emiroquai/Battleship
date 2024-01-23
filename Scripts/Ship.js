@@ -1,24 +1,20 @@
 function Ship(length) {
-    this.length = length;
-    this.hits = 0;
-    this.sunk = false
-
-    const hit = () => {
-        this.hits++;
+    const ship = {
+        length: length,
+        hits: 0,
+        sunk: false,
+        hit() {
+            this.hits += 1
+        },
+        isSunk() {
+            if (this.hits === this.length) {
+                this.sunk = true
+            }
+            return this.sunk
+        }   
     }
 
-    const isSunk = () => {
-        if (this.hits === this.length) {
-            this.isSunk = true
-        }
-        return this.sunk
-    }
-
-    return {
-        length,
-        hits,
-        sunk,
-    }
+    return ship;
 }
 
 module.exports = Ship
