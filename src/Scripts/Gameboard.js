@@ -19,19 +19,29 @@ const Gameboard = (() => {
     const placeShip = (ship, coordinates, direction) => {
         for (let i = 0; i < ship.length; i++) {
             if (direction === 'right') {
-                board[coordinates[0]][coordinates[1] + i] = ship.id
+                board[coordinates[0]][coordinates[1] + i] = ship//.id
             } else if(direction === 'down'){
-                board[coordinates[0] + i][coordinates[1]] = ship.id
+                board[coordinates[0] + i][coordinates[1]] = ship//.id
             }
             board
             
         }
     }
 
+    const receiveAttack = (coordinates) => {
+        let loc = board[coordinates[0]][coordinates[1]]
+        if (loc != '') {
+            loc.hit()
+        } else {
+            return
+        }
+    }
+
     return {
         createBoard,
         getBoard,
-        placeShip
+        placeShip,
+        receiveAttack
     }
 })();
 

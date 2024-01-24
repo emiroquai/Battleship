@@ -16,12 +16,25 @@ test('Places ship at specific coordinates', () => {
     let myShip = Ship(3);
     Gameboard.placeShip(myShip, [2,3], 'right');
     let board = Gameboard.getBoard()
-    expect(board[2][3]).toBe(myShip.id)    
-    expect(board[2][4]).toBe(myShip.id)    
-    expect(board[2][5]).toBe(myShip.id)
+    expect(board[2][3]).toBe(myShip)    
+    expect(board[2][4]).toBe(myShip)    
+    expect(board[2][5]).toBe(myShip)
     
     Gameboard.placeShip(myShip, [2,3], 'down');
-    expect(board[2][3]).toBe(myShip.id)    
-    expect(board[3][3]).toBe(myShip.id)    
-    expect(board[4][3]).toBe(myShip.id)    
+    expect(board[2][3]).toBe(myShip)    
+    expect(board[3][3]).toBe(myShip)    
+    expect(board[4][3]).toBe(myShip)    
+})
+
+test('takes a pair of coordinates, determines whether or not the attack hit a ship and then sends the "hit" function to the correct ship', () => {
+    let myShip = Ship(2);
+    Gameboard.placeShip(myShip, [4,5], 'right');
+    let board = Gameboard.getBoard();
+
+    Gameboard.receiveAttack([4,5]);
+    expect(myShip.hits).toBe(1)
+    expect(myShip.isSunk()).toBe(false)
+    Gameboard.receiveAttack([4,6]);
+    expect(myShip.hits).toBe(2)
+    expect(myShip.isSunk()).toBe(true)
 })
