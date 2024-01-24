@@ -10,7 +10,11 @@ const Gameboard = (() => {
         return board;
     }
 
-    let board = createBoard()
+    const initBoard = () => {
+        let board = createBoard()
+    }
+
+    initBoard();
 
     const getBoard = () => {
         return board
@@ -36,6 +40,7 @@ const Gameboard = (() => {
 
     return {
         createBoard,
+        initBoard,
         getBoard,
         placeShip,
         receiveAttack
