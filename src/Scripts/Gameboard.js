@@ -19,9 +19,9 @@ const Gameboard = (() => {
     const placeShip = (ship, coordinates, direction) => {
         for (let i = 0; i < ship.length; i++) {
             if (direction === 'right') {
-                board[coordinates[0]][coordinates[1] + i] = ship
+                board[coordinates[0]][coordinates[1] + i] = ship.id
             } else if(direction === 'down'){
-                board[coordinates[0] + i][coordinates[1]] = ship
+                board[coordinates[0] + i][coordinates[1]] = ship.id
             }
             board
             

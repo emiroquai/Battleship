@@ -16,12 +16,12 @@ test('Places ship at specific coordinates', () => {
     let myShip = Ship(3);
     Gameboard.placeShip(myShip, [2,3], 'right');
     let board = Gameboard.getBoard()
-    expect(board[2][3]).toBe(myShip)    
-    expect(board[2][4]).toBe(myShip)    
-    expect(board[2][5]).toBe(myShip)
+    expect(board[2][3]).toBe(myShip.id)    
+    expect(board[2][4]).toBe(myShip.id)    
+    expect(board[2][5]).toBe(myShip.id)
     
     Gameboard.placeShip(myShip, [2,3], 'down');
-    expect(board[2][3]).toBe(myShip)    
-    expect(board[3][3]).toBe(myShip)    
-    expect(board[4][3]).toBe(myShip)    
+    expect(board[2][3]).toBe(myShip.id)    
+    expect(board[3][3]).toBe(myShip.id)    
+    expect(board[4][3]).toBe(myShip.id)    
 })
