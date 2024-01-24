@@ -23,17 +23,14 @@ const Gameboard = (() => {
             } else if(direction === 'down'){
                 board[coordinates[0] + i][coordinates[1]] = ship
             }
-            board
-            
         }
     }
 
     const receiveAttack = (coordinates) => {
-        let loc = board[coordinates[0]][coordinates[1]]
-        if (loc != '') {
-            loc.hit()
+        if (board[coordinates[0]][coordinates[1]] instanceof Object) {
+            board[coordinates[0]][coordinates[1]].hit();
         } else {
-            return
+            board[coordinates[0]][coordinates[1]] = 'X';
         }
     }
 

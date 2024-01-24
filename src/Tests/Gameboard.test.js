@@ -38,3 +38,14 @@ test('takes a pair of coordinates, determines whether or not the attack hit a sh
     expect(myShip.hits).toBe(2)
     expect(myShip.isSunk()).toBe(true)
 })
+
+test('keep track of missed attacks', () => {
+    let myShip = Ship(4);
+    let board = Gameboard.createBoard();
+    board = Gameboard.getBoard();
+    Gameboard.placeShip(myShip, [8,5], 'right');
+    Gameboard.receiveAttack([8,3]);
+
+    expect(myShip.hits).toBe(0);
+    expect(board[8][3]).toBe('X');
+})
