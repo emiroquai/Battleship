@@ -1,4 +1,4 @@
-const Gameboard = (() => {
+const Gameboard = () => {
   const createBoard = () => {
     const board = [];
     for (let i = 0; i < 10; i++) {
@@ -10,11 +10,7 @@ const Gameboard = (() => {
     return board;
   }
 
-  let board = createBoard()
-
-  const getBoard = () => {
-    return board
-  }
+  const board = createBoard()
 
   const resetBoard = () => {
     for (let i = 0; i < 10; i++) {
@@ -56,13 +52,12 @@ const Gameboard = (() => {
   }
 
   return {
-    createBoard,
+    board,
     resetBoard,
-    getBoard,
     placeShip,
     receiveAttack,
     allSunk
   }
-})();
+};
 
 module.exports = Gameboard;
