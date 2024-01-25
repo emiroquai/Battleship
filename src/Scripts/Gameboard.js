@@ -34,6 +34,7 @@ const Gameboard = () => {
   const receiveAttack = (coordinates) => {
     if (board[coordinates[0]][coordinates[1]] instanceof Object) {
       board[coordinates[0]][coordinates[1]].hit();
+      board[coordinates[0]][coordinates[1]] = 'O';
     } else {
       board[coordinates[0]][coordinates[1]] = 'X';
     }

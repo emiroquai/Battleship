@@ -12,9 +12,20 @@ const Player = () => {
       player.setTurn();
     },
     randomAttack(player) {
-      function randomNumber() { return Math.floor(Math.random() * 10)};
-      const randomCoord = [randomNumber(), randomNumber()];
-      this.attack(player, randomCoord);
+      function randomCoord() {
+        function randomNumber() { return Math.floor(Math.random() * 10)};
+        let randomCoord = [];
+        function genRandomCoord() { 
+          randomCoord = [randomNumber(), randomNumber()];
+          if (player.board.board[randomCoord[0]][randomCoord[1]] === 'X' 
+          || player.board.board[randomCoord[0]][randomCoord[1]] === 'O') {
+            return genRandomCoord();
+          }
+        }
+        genRandomCoord();
+        return randomCoord
+      }
+      this.attack(player, randomCoord());
     }
   }
 }
