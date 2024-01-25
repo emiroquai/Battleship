@@ -9,5 +9,24 @@ test('Players can take turns playing the game by attacking the enemy Gameboard',
   expect(player2.board.board[1][1]).toBe('X');
   expect(player1.turn).toBe(false);
   expect(player2.turn).toBe(true);
+})
 
+test('Computer can make random plays', () => {
+  const player1 = Player();
+  const player2 = Player();
+
+  player1.randomAttack(player2);
+
+  function searchStringInArray(searchString, twoDArray) {
+    for (let i = 0; i < twoDArray.length; i++) {
+      for (let j = 0; j < twoDArray[i].length; j++) {
+        if (twoDArray[i][j] === searchString) {
+          return true; // String found in the 2D array
+        }
+      }
+    }
+    return false; // String not found in the 2D array
+  }  
+  
+  expect(searchStringInArray('X', player2.board.board)).toBe(true);
 })

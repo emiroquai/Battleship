@@ -10,6 +10,11 @@ const Player = () => {
       player.board.receiveAttack(coordinates);
       this.setTurn();
       player.setTurn();
+    },
+    randomAttack(player) {
+      function randomNumber() { return Math.floor(Math.random() * 10)};
+      const randomCoord = [randomNumber(), randomNumber()];
+      this.attack(player, randomCoord);
     }
   }
 }
