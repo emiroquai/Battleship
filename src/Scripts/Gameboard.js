@@ -62,6 +62,7 @@ const Gameboard = () => {
     const battleship = Ship(4);
     const carrier = Ship(5);
     
+    resetBoard();
     placeShip(destroyer, [1,2], 'right');
     placeShip(submarine, [3,1], 'down');
     placeShip(cruiser, [5,4], 'right');
