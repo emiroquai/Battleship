@@ -58,7 +58,7 @@ main {
 }
 
 .hit {
-  border: 2px dotted red;
+  border: 3px dotted red;
 }
 
 .miss {
