@@ -52,3 +52,15 @@ main {
   border: 1px dotted lime;
   cursor: pointer;
 }
+
+.ship {
+  border: 2px solid yellow;
+}
+
+.hit {
+  border: 2px dotted red;
+}
+
+.miss {
+  border: 2px dotted grey;
+}
