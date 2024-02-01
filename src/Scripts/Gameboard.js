@@ -1,3 +1,5 @@
+const Ship = require('./Ship.js');
+
 const Gameboard = () => {
   const createBoard = () => {
     const board = [];
@@ -52,12 +54,28 @@ const Gameboard = () => {
     return allSunk
   }
 
+  //Populate each gameboard with predetermined coordinates
+  const setupShips = () => {
+    const destroyer = Ship(2);
+    const submarine = Ship(3);
+    const cruiser = Ship(3);
+    const battleship = Ship(4);
+    const carrier = Ship(5);
+    
+    placeShip(destroyer, [1,2], 'right');
+    placeShip(submarine, [3,1], 'down');
+    placeShip(cruiser, [5,4], 'right');
+    placeShip(battleship, [7,6], 'right');
+    placeShip(carrier, [0,8], 'down');
+  }
+
   return {
     board,
     resetBoard,
     placeShip,
     receiveAttack,
-    allSunk
+    allSunk,
+    setupShips
   }
 };
 
