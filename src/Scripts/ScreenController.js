@@ -3,8 +3,8 @@ import GameController from "./GameController";
 const ScreenController = (() => {
 
   //Renders and displays boards and ships
-  const renderBoard = (player, boardElement) => {
-    boardElement.innerHTML = '';
+  const renderBoard = (player) => {
+    player.boardElement.innerHTML = '';
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
         let cell = document.createElement('div');
@@ -24,7 +24,7 @@ const ScreenController = (() => {
             GameController.playTurn([i,j]);    
             })
           }
-        boardElement.appendChild(cell);
+        player.boardElement.appendChild(cell);
       }
     }
   }
