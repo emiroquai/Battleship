@@ -26,8 +26,11 @@ const Player = (name) => {
         genRandomCoord();
         return randomCoord
       }
-      this.attack(player, randomCoord());
-    }
+      const coordinates = randomCoord();
+      this.randomCoord = coordinates;
+      this.attack(player, coordinates);
+    },
+    randomCoord: null,
   }
 }
 

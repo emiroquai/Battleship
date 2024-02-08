@@ -54,13 +54,17 @@ main {
 }
 
 .ship {
-  border: 3px solid yellow;
+  border: 2px solid yellow;
+  background-color: rgba(255, 255, 0, 0.2);
+  
 }
 
 .hit {
   border: 3px dotted red;
+  background-color: rgba(255, 0, 0, 0.2);
 }
 
 .miss {
-  border: 2px dotted grey;
+  border: 3px dotted grey;
+  background-color: rgba(128, 128, 128, 0.2);
 }

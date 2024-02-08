@@ -24,9 +24,22 @@ const GameController = (() => {
 
   const playTurn = (coordinates) => {
     human.attack(computer, coordinates);
-    computer.randomAttack(human);
     ScreenController.renderBoard(computer);
-    ScreenController.renderBoard(human)
+    if (computer.board.board[coordinates[0]][coordinates[1]] === 'X') {
+      ScreenController.displayMessage('You missed');
+    } else if (computer.board.board[coordinates[0]][coordinates[1]] === 'O') {
+      ScreenController.displayMessage("It's a hit!");
+    }
+    setTimeout(() => {
+      computer.randomAttack(human);
+      const randomCoordinates = computer.randomCoord;
+      if (human.board.board[randomCoordinates[0]][randomCoordinates[1]] === 'X') {
+        ScreenController.displayMessage('Computer missed');
+      } else if (human.board.board[randomCoordinates[0]][randomCoordinates[1]] === 'O') {
+        ScreenController.displayMessage("Computer hit!");
+      }
+      ScreenController.renderBoard(human)
+    }, "1500")
   }
 
   return {
