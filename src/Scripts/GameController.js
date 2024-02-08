@@ -7,8 +7,8 @@ const GameController = (() => {
 
   const game = () => {
     //Setup game
-    human = Player('human');
-    computer = Player('computer');
+    human = Player('Human');
+    computer = Player('Computer');
         
     human.board.setupShips();
     computer.board.setupShips();
@@ -22,29 +22,53 @@ const GameController = (() => {
     return {human, computer}
   };
 
-  const playTurn = (coordinates) => {
-    human.attack(computer, coordinates);
-    ScreenController.renderBoard(computer);
-    if (computer.board.board[coordinates[0]][coordinates[1]] === 'X') {
-      ScreenController.displayMessage('You missed');
-    } else if (computer.board.board[coordinates[0]][coordinates[1]] === 'O') {
-      ScreenController.displayMessage("It's a hit!");
+  const updateMessage = (player, oponent, coordinates) => {
+    if (oponent.board.board[coordinates[0]][coordinates[1]] === 'X') {
+      ScreenController.displayMessage(`${player.name} missed`);
+    } else if (oponent.board.board[coordinates[0]][coordinates[1]] === 'O') {
+      ScreenController.displayMessage(`${player.name} hit!`);
     }
-    setTimeout(() => {
-      computer.randomAttack(human);
-      const randomCoordinates = computer.randomCoord;
-      if (human.board.board[randomCoordinates[0]][randomCoordinates[1]] === 'X') {
-        ScreenController.displayMessage('Computer missed');
-      } else if (human.board.board[randomCoordinates[0]][randomCoordinates[1]] === 'O') {
-        ScreenController.displayMessage("Computer hit!");
-      }
-      ScreenController.renderBoard(human)
-    }, "1500")
   }
+
+  const checkWin = (player, opponent) => {
+    if (opponent.board.allSunk()) {  
+      setTimeout(() => {
+        ScreenController.displayMessage(`${player.name} wins!`)
+      }, "1000")
+      return 
+    }
+  }
+
+  const humanTurn = (coordinates) => {
+    if (!human.board.allSunk() && !computer.board.allSunk()) {
+      human.attack(computer, coordinates);
+      ScreenController.renderBoard(computer);
+      updateMessage(human, computer, coordinates)
+      checkWin(human, computer);
+    }
+  }
+
+  const computerTurn = () => {
+    if (!human.board.allSunk() && !computer.board.allSunk()) {
+      setTimeout(() => {
+        computer.randomAttack(human);
+        const randomCoordinates = computer.randomCoord;
+        updateMessage(computer, human, randomCoordinates);
+        ScreenController.renderBoard(human);
+      }, "1000")
+      checkWin(computer, human);
+    }
+  }
+
+  const play = (coordinates) => {
+      humanTurn(coordinates);
+      computerTurn();
+  }
+  
 
   return {
     game,
-    playTurn
+    play
   }
 })();
 

@@ -15,13 +15,13 @@ const ScreenController = (() => {
           cell.classList.add("miss")
         }
         // Render player's ships
-        if (player.name === 'human' && player.board.board[i][j] instanceof Object) {
+        if (player.name === 'Human' && player.board.board[i][j] instanceof Object) {
         cell.classList.add("ship")
         }
         // Event listener for computer board
-        if (player.name === 'computer') {
+        if (player.name === 'Computer') {
           cell.addEventListener('click', function() {        
-            GameController.playTurn([i,j]);    
+            GameController.play([i,j]);    
             })
           }
         player.boardElement.appendChild(cell);
