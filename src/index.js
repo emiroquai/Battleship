@@ -3,8 +3,6 @@ import GameController from './Scripts/GameController';
 import ScreenController from './Scripts/ScreenController';
 import Player from './Scripts/Player';
 
+console.log(GameController);
+GameController.game();
 
-const player1 = Player();
-const computer = Player();
-GameController.game(player1, computer);
-ScreenController(player1, computer);

@@ -1,7 +1,8 @@
 const Gameboard = require('../Scripts/Gameboard')
 
-const Player = () => {
+const Player = (name) => {
   return {
+    name: name,
     turn: false,
     board: Gameboard(),
     getTurn() {return this.turn},
