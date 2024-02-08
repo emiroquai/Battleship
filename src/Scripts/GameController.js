@@ -1,36 +1,52 @@
-const Player = require('./Player.js');
-const Ship = require('./Ship.js');
-const ScreenController = require('./ScreenController');
+import Player from './Player.js';
+import ScreenController from './ScreenController.js';
 
 const GameController = (() => {
-  let player1;
+  let human;
   let computer;
-  const getPlayer1 = () => player1;
+  let humanBoard;
+  let computerBoard;
+  const getHuman = () => human;
   const getComputer = () => computer;
+  const getHumanBoard = () => humanBoard;
+  const getComputerBoard = () => computerBoard;
 
   const game = () => {
     //Setup game
-    player1 = Player('player');
+    human = Player('human');
     computer = Player('computer');
         
-    player1.board.setupShips();
+    human.board.setupShips();
     computer.board.setupShips();
 
-    const player1Board = document.querySelector('#board1');
-    const computerBoard = document.querySelector('#board2');  
+    humanBoard = document.querySelector('#board1');
+    human.boardElement = document.querySelector('#board1');
+    computerBoard = document.querySelector('#board2');  
     
-    ScreenController.renderBoard(player1, player1Board);
+    ScreenController.renderBoard(human, humanBoard);
     ScreenController.renderBoard(computer, computerBoard);
 
-    return {player1, computer}
+    return {human, computer, computerBoard, humanBoard}
   };
+
+  const playTurn = (coordinates) => {
+    // human = GameController.getHuman();
+    // const humanBoard = GameController.getHumanBoard();
+      human.attack(computer, coordinates);
+      computer.randomAttack(human);
+    ScreenController.renderBoard(computer, computerBoard);
+    ScreenController.renderBoard(human, humanBoard)
+  }
 
 
   return {
     game,
-    getPlayer1,
-    getComputer
+    getHuman,
+    getComputer,
+    getHumanBoard,
+    getComputerBoard,
+    playTurn
   }
 })();
 
-module.exports = GameController;
+export default GameController;

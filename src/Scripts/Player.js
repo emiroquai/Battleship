@@ -1,4 +1,4 @@
-const Gameboard = require('../Scripts/Gameboard')
+import Gameboard from "./Gameboard"
 
 const Player = (name) => {
   return {
@@ -31,7 +31,7 @@ const Player = (name) => {
   }
 }
 
-module.exports = Player;
+export default Player;
 
   
   

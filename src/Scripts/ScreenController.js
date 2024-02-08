@@ -1,5 +1,4 @@
-const GameController = require('./GameController');
-console.log(GameController);
+import GameController from "./GameController";
 
 const ScreenController = (() => {
 
@@ -16,17 +15,14 @@ const ScreenController = (() => {
           cell.classList.add("miss")
         }
         // Render player's ships
-        if (player.name === 'player' && player.board.board[i][j] instanceof Object) {
+        if (player.name === 'human' && player.board.board[i][j] instanceof Object) {
         cell.classList.add("ship")
         }
         // Event listener for computer board
         if (player.name === 'computer') {
-          cell.addEventListener('click', function() {            
-            // const player1 = GameController.getPlayer1();
-            player.board.receiveAttack([i,j])
-            // player.randomAttack(player1);
-            renderBoard(player,boardElement);
-          })
+          cell.addEventListener('click', function() {        
+            GameController.playTurn([i,j]);    
+            })
           }
         boardElement.appendChild(cell);
       }
@@ -44,4 +40,4 @@ const ScreenController = (() => {
   }
 })();
 
-module.exports = ScreenController;
+export default ScreenController;

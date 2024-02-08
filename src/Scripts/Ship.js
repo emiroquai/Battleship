@@ -18,4 +18,4 @@ function Ship(length) {
     return ship;
 }
 
-module.exports = Ship
+export default Ship;
