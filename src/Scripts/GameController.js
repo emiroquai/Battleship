@@ -5,12 +5,14 @@ const GameController = (() => {
   let human;
   let computer;
 
+  const shuffleBtn = document.querySelector('#shuffleBtn');
+
   const game = () => {
     //Setup game
     human = Player('Human');
     computer = Player('Computer');
         
-    human.board.setupShips();
+    human.board.setupShipsRandom();
     computer.board.setupShipsRandom();
     console.log(computer.board.board)
     
@@ -62,14 +64,23 @@ const GameController = (() => {
   }
 
   const play = (coordinates) => {
+      if (shuffleBtn.style.display != 'none') {
+        shuffleBtn.style.display = 'none';
+      }
       humanTurn(coordinates);
       computerTurn();
   }
+
+  const shuffleHumanBoard = () => {
+    human.board.setupShipsRandom();
+    ScreenController.renderBoard(human);
+  } 
   
 
   return {
     game,
-    play
+    play,
+    shuffleHumanBoard
   }
 })();
 

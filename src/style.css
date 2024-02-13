@@ -38,6 +38,8 @@ main {
 
 .boardDiv {
   display: grid;
+  justify-items: center;
+  align-content: baseline;
 }
 
 .boardWrapper {
@@ -72,4 +74,15 @@ main {
 
 .cell:hover {
 background-color: rgba(255, 0, 0, 0.4);
+}
+
+button {
+  font-family: inherit;
+  color: lime;
+  cursor: pointer;
+  background-color: rgb(43, 43, 41);
+  width: 110px;
+  padding: 10px;
+  box-shadow: none;
+  border: none;
 }
