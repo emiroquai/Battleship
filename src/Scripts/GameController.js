@@ -11,7 +11,7 @@ const GameController = (() => {
     computer = Player('Computer');
         
     human.board.setupShips();
-    computer.board.setupComputerShips();
+    computer.board.setupShipsRandom();
     console.log(computer.board.board)
     
     human.boardElement = document.querySelector('#board1');

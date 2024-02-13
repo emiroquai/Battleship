@@ -76,27 +76,35 @@ const Gameboard = () => {
     coordinates[1] = randomNumber();
   };
 
-  function genRandomShipCoord(length, direction) { 
-    let coordinates = [];
-    shuffleCoordinates(coordinates);
+  const canPlaceShip = (coordinates, length, direction) => {
     if (direction === 'right') {
       if (coordinates[1] + length > 9) {
-        return genRandomShipCoord(length, direction)
+        return false
       }
       for (let i = 0; i < length; i++) {
         if (board[coordinates[0]][coordinates[1] + i] instanceof Object) {
-          return genRandomShipCoord(length, direction)
+          return false
         }
       }
+      return true
     } else if (direction === 'down') {
       if (coordinates[0] + length > 9) {
-        return genRandomShipCoord(length, direction);
+        return false
       }
       for (let i = 0; i < length; i++) {
         if (board[coordinates[0] + i][coordinates[1]] instanceof Object) {
-          return genRandomShipCoord(length, direction);
+          return false
         }
       }
+      return true
+    }
+  }
+
+  function genRandomShipCoord(length, direction) { 
+    let coordinates = [];
+    shuffleCoordinates(coordinates);
+    if (!canPlaceShip(coordinates, length, direction)) {
+      return genRandomShipCoord(length, direction);
     }
     return coordinates;
   } 
@@ -118,7 +126,7 @@ const Gameboard = () => {
     return [destroyer, submarine, cruiser, battleship, carrier];
   }
 
-  const setupComputerShips = () => {
+  const setupShipsRandom = () => {
     const ships = createShips();
     resetBoard();
     ships.forEach((ship) => {
@@ -135,7 +143,7 @@ const Gameboard = () => {
     receiveAttack,
     allSunk,
     setupShips,
-    setupComputerShips
+    setupShipsRandom
   }
 };
 
