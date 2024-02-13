@@ -1,4 +1,5 @@
 import Ship from "./Ship";
+import { randomNumber } from "./Player";
 
 const Gameboard = () => {
   const createBoard = () => {
@@ -70,13 +71,71 @@ const Gameboard = () => {
     placeShip(carrier, [0,8], 'down');
   }
 
+  const shuffleCoordinates = (coordinates) => {
+    coordinates[0] = randomNumber();
+    coordinates[1] = randomNumber();
+  };
+
+  function genRandomShipCoord(length, direction) { 
+    let coordinates = [];
+    shuffleCoordinates(coordinates);
+    if (direction === 'right') {
+      if (coordinates[1] + length > 9) {
+        return genRandomShipCoord(length, direction)
+      }
+      for (let i = 0; i < length; i++) {
+        if (board[coordinates[0]][coordinates[1] + i] instanceof Object) {
+          return genRandomShipCoord(length, direction)
+        }
+      }
+    } else if (direction === 'down') {
+      if (coordinates[0] + length > 9) {
+        return genRandomShipCoord(length, direction);
+      }
+      for (let i = 0; i < length; i++) {
+        if (board[coordinates[0] + i][coordinates[1]] instanceof Object) {
+          return genRandomShipCoord(length, direction);
+        }
+      }
+    }
+    return coordinates;
+  } 
+
+  const randomDirection = () => {
+    const directions = ['right', 'down'];
+    const randomIndex = Math.floor(Math.random() * 2);
+
+    return directions[randomIndex];
+  }
+
+  const createShips = () => {
+    const destroyer = Ship(2);
+    const submarine = Ship(3);
+    const cruiser = Ship(3);
+    const battleship = Ship(4);
+    const carrier = Ship(5);
+
+    return [destroyer, submarine, cruiser, battleship, carrier];
+  }
+
+  const setupComputerShips = () => {
+    const ships = createShips();
+    resetBoard();
+    ships.forEach((ship) => {
+      const direction = randomDirection();
+      const coordinates = genRandomShipCoord(ship.length, direction);
+      placeShip(ship, coordinates, direction);
+    })
+  }
+
   return {
     board,
     resetBoard,
     placeShip,
     receiveAttack,
     allSunk,
-    setupShips
+    setupShips,
+    setupComputerShips
   }
 };
 

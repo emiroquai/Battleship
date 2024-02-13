@@ -1,5 +1,7 @@
 import Gameboard from "./Gameboard"
 
+export function randomNumber() { return Math.floor(Math.random() * 10)};
+
 const Player = (name) => {
   return {
     name: name,
@@ -14,7 +16,6 @@ const Player = (name) => {
     },
     randomAttack(player) {
       function randomCoord() {
-        function randomNumber() { return Math.floor(Math.random() * 10)};
         let randomCoord = [];
         function genRandomCoord() { 
           randomCoord = [randomNumber(), randomNumber()];

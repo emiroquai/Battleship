@@ -11,7 +11,8 @@ const GameController = (() => {
     computer = Player('Computer');
         
     human.board.setupShips();
-    computer.board.setupShips();
+    computer.board.setupComputerShips();
+    console.log(computer.board.board)
     
     human.boardElement = document.querySelector('#board1');
     computer.boardElement = document.querySelector('#board2');
