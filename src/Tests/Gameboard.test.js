@@ -1,5 +1,7 @@
-const Gameboard = require('../Scripts/Gameboard')
-const Ship = require('../Scripts/Ship')
+// const Gameboard = require('../Scripts/Gameboard')
+// const Ship = require('../Scripts/Ship')
+import Gameboard from "../Scripts/Gameboard";
+import Ship from "../Scripts/Ship";
 
 test('Creates a 10x10 gameboard', () => {
     const myBoard = Gameboard();

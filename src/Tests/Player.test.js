@@ -1,4 +1,5 @@
-const Player = require('../Scripts/Player')
+// const Player = require('../Scripts/Player')
+import Player from "../Scripts/Player";
 
 function searchStringInArray(searchString, twoDArray) {
   for (let i = 0; i < twoDArray.length; i++) {

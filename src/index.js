@@ -1,4 +1,4 @@
-import GameController from './Scripts/GameController';
+import GameController from './Scripts/GameController.js';
 import css from './style.css';
 
 GameController.game();

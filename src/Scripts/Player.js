@@ -1,4 +1,4 @@
-import Gameboard from "./Gameboard"
+import Gameboard from "./Gameboard.js"
 
 export function randomNumber() { return Math.floor(Math.random() * 10)};
 

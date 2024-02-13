@@ -1,4 +1,4 @@
-import GameController from "./GameController";
+import GameController from "./GameController.js";
 
 const ScreenController = (() => {
 

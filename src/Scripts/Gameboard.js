@@ -1,5 +1,5 @@
-import Ship from "./Ship";
-import { randomNumber } from "./Player";
+import Ship from "./Ship.js";
+import { randomNumber } from "./Player.js";
 
 const Gameboard = () => {
   const createBoard = () => {

@@ -1,5 +1,6 @@
-const { execPath } = require('process')
-const Ship = require('../Scripts/Ship')
+// const { execPath } = require('process')
+// const Ship = require('../Scripts/Ship')
+import Ship from "../Scripts/Ship";
 
 test ('Ship factory creates a ship object with given length', () => {
     let ship1 = Ship(4)
